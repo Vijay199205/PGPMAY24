@@ -1,26 +1,26 @@
-import React, { useState } from 'react';
-import About from './Component/About';
-import './App.css';
-import Contact from './Component/Contact'
-import Blog from './Component/Blog';
+import React from 'react'
+import Childernprop from './Component/Childernprop';
+import Section from './Component/Section';
+//import Contact from './Csomponent/Contact';
+
+//var fname = 'vijay';
 
 function App() {
-  let visisble = true;
-  const [value , display] = useState(true);
+  return (
+    <div>
+     <h1>Hello</h1>
+     {/* <Section rollNo="1" marks="85" subject="Physics">
+      <Childernprop/>
+     </Section> */}
+     {/* <Childernprop>
+      <h1>I am intersted to beacome full stack developer</h1>
+     </Childernprop>  */}
 
-  const handaler=()=>{
-    display(!value)
-  }
-  return(
-  <div>
-  {value && <h1>My first react app</h1>}
-    {visisble ? <About/> : <Contact/>}
-    {visisble && <Blog/>}
-    <button onClick={handaler}>value dispaly</button>
-   </div>
+      {/* <Contact firstName={fname} age="32" salary="2000"/>
+      <Contact firstName="Vinay" age="40" salary="50000"/>
+      <Contact firstName="aditya" age="20" /> */}
+    </div>
   )
 }
 
-
-
-export default App;
+export default App
