@@ -26,3 +26,114 @@ function App() {
 
 
 export default App;
+
+
+//props concept 
+import React from 'react'
+import Childernprop from './Component/Childernprop';
+import Section from './Component/Section';
+//import Contact from './Csomponent/Contact';
+
+//var fname = 'vijay';
+
+function App() {
+  return (
+    <div>
+     <h1>Hello</h1>
+     {/* <Section rollNo="1" marks="85" subject="Physics">
+      <Childernprop/>
+     </Section> */}
+     {/* <Childernprop>
+      <h1>I am intersted to beacome full stack developer</h1>
+     </Childernprop>  */}
+
+      {/* <Contact firstName={fname} age="32" salary="2000"/>
+      <Contact firstName="Vinay" age="40" salary="50000"/>
+      <Contact firstName="aditya" age="20" /> */}
+    </div>
+  )
+}
+
+export default App
+
+
+// state Code 
+
+import React, { useState } from 'react'
+
+function App() {
+  const [count, setCount] = useState(0);
+  const [bgColor, setBgcolr] = useState('red');
+
+ function handleIncrement(){
+  setCount(count + 1)
+ }
+  return (
+    <div style={{backgroundColor:bgColor}}>
+     <h1>Count: {count}</h1>
+     <button onClick={()=>setBgcolr('blue')}>Bule</button>
+     <button onClick={()=>setBgcolr('green')}>Green</button>
+     <button onClick={handleIncrement}>One Click</button>
+    </div>
+  )
+}
+
+export default App
+
+
+// normal theme changer
+
+import React, { useState } from 'react'
+
+function App() {
+  
+  const [bgColor, setBgColor] = useState("white");
+  const [color, setColor] = useState("black");
+  const [text, setText] = useState("Drak")
+
+  function handleTheme(){
+    if(bgColor === "black"){
+      setBgColor("white");
+      setColor("black");
+      setText("Dark");
+    }else{
+      setBgColor("black");
+      setColor("white");
+      setText("Light")
+    }
+    
+  }
+  return (
+    <div style={{backgroundColor:bgColor, color:color}}>
+    <h1>Hello Word</h1>
+    <p>Learning State</p>
+    <button onClick={handleTheme}>{text} Mode</button>
+
+   
+    </div>
+  )
+}
+
+export default App
+
+// Better Design patten
+import React, { useState } from 'react'
+
+function App() {
+  
+  const [condition, setCondition] = useState(false);
+  function handleTheme(){
+    setCondition(!condition);
+  }
+  return (
+    <div style={{backgroundColor:condition?"black":"white", color:condition?"white":"black"}}>
+    <h1>Hello Word</h1>
+    <p>Learning State</p>
+    <button onClick={handleTheme}>{condition?"Light":"white"} Mode</button>
+
+   
+    </div>
+  )
+}
+
+export default App
