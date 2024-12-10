@@ -137,3 +137,28 @@ function App() {
 }
 
 export default App
+
+
+// batching or scheduling and privious state
+
+import React, { useState } from 'react'
+
+function App() {
+  
+  const [count, setCount] = useState(0);
+  function handleIncrement(){
+    setCount((count) => count + 1);
+    setCount((count) => count + 1);
+    setCount((count) => count + 1);
+    setCount((count) => count + 1);
+  }
+  return (
+    <div>
+    <h1>count: {count}</h1>
+    <button onClick={handleIncrement}>Increment</button>
+    </div>
+  )
+}
+
+export default App
+
