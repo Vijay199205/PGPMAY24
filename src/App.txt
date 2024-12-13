@@ -162,3 +162,104 @@ function App() {
 
 export default App
 
+
+// controlled Component
+import React, { useState }  from 'react'
+
+function App() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("")
+  const [condition, setCondition] = useState(false)
+  function handleSubmit(e){
+    e.preventDefault();
+  // setName("Hello Good Moring Vijay")
+  setCondition(true);
+  }
+  
+  return (
+    <div>
+    <form onSubmit={handleSubmit}>
+   <input type="text" value={name} onChange={(e) =>setName(e.target.value)}/>
+   <input type='email' value={email} onChange={(e)=>setEmail(e.target.value)}/>
+    <button type='submit'>Submit</button>
+    </form>
+    {condition && <h1>{name} {email}</h1>}
+    </div>
+  )
+}
+
+export default App
+
+// objects created inside controlled Component
+import React, { useState }  from 'react'
+
+function App() {
+  const [inputs, setInputs] = useState({
+    name:"",
+    email:"",
+    pass:""
+  });
+  
+  function handleSubmit(e){
+    e.preventDefault();
+  // setName("Hello Good Moring Vijay")
+  //setCondition(true);
+  }
+  
+  return (
+    <div>
+    <form onSubmit={handleSubmit}>
+   <input type="text" value={inputs.name} onChange={(e) =>setInputs((prev)=>({...prev, name:e.target.value }))}/>
+   <input type='email' value={inputs.email} onChange={(e)=>setInputs((prev)=>({...prev, email:e.target.value}))}/>
+   <input type='password' value={inputs.pass} onChange={(e)=>setInputs((prev)=>({...prev, pass:e.target.value}))}/>
+    <button type='submit'>Submit</button>
+    </form>
+    <h1>{inputs.name} {inputs.email} {inputs.pass}</h1>
+    </div>
+  )
+}
+
+export default App
+
+
+// Mounting , Updating , Unmounting
+
+import React, { useState }  from 'react'
+
+function App() {
+
+const [count, setCount] = useState(0);
+const [condition, setCondition] = useState(false)
+
+  
+  console.log('hey');
+  return (
+    <div>
+    <h1>count: {count}</h1>
+    <button onClick={()=>setCondition(!condition)}>toggle</button>
+    {condition && <About/>}
+
+  
+
+
+
+    </div>
+  )
+}
+
+export default App;
+
+
+function About(){
+  const [number, setNumber] = useState(100);
+  console.log("about")
+  return(
+    <div>
+      <h1>Number is {number}</h1>
+      <button onClick={()=>setNumber(number - 2)}>--</button>
+    </div>
+  )
+
+}
+
+

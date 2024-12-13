@@ -1,23 +1,22 @@
-import React, { useState }  from 'react'
+import React, { useEffect, useState }  from 'react'
+import Post from './Post';
 
 function App() {
-  const [name, setName] = useState("");
-  const [condition, setCondition] = useState(false)
-  function handleSubmit(e){
-    e.preventDefault();
-  // setName("Hello Good Moring Vijay")
-  setCondition(true);
-  }
-  
+
+const [count, setCount] = useState(0);
+
+useEffect(()=>{
+  console.log("Vijay");
+},[count])
+
   return (
     <div>
-    <form onSubmit={handleSubmit}>
-   <input type="text" value={name} onChange={(e) =>setName(e.target.value)}/>
-    <button type='submit'>Submit</button>
-    </form>
-    {condition && <h1>{name}</h1>}
+    <Post />
+    <h1>count: {count}</h1>
+    <button onClick={()=>setCount(count + 1)}>+</button>
     </div>
   )
 }
 
-export default App
+export default App;
+
