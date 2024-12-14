@@ -262,4 +262,147 @@ function About(){
 
 }
 
+//Uncontrolled Component
+
+import React, { useRef } from "react";
+
+function Uncontrolled() {
+  const fnameRef = useRef(null);
+  const lnameRef = useRef(null);
+
+  const SubmitHandler = (e) => {
+    e.preventDefault();
+    console.log("fname", fnameRef.current.value);
+    console.log("lname", lnameRef.current.value);
+  };
+
+  return (
+    <div>
+      <h1>controlled components</h1>
+      <form onSubmit={SubmitHandler}>
+        <input
+          type="text"
+          name="fname"
+          ref={fnameRef}
+          placeholder="Enter your Firstname"
+        />
+        <br /> <br />
+        <input
+          type="text"
+          name="lname"
+          ref={lnameRef}
+          placeholder="Enter your Firstname"
+        />
+        <br /> <br />
+        <button>Submit</button>
+      </form>
+    </div>
+  );
+}
+
+export default Uncontrolled;
+
+
+// controlled components
+
+import React, { useState } from "react";
+function Controlled() {
+  const [values, setValues] = useState({
+    fname: "",
+    lname: "",
+  });
+
+  function handlerInput(e) {
+    let { name, value } = e.target;
+
+    setValues({
+      ...values,
+      [name]: value,
+    });
+  }
+  return (
+    <div>
+      <h1>controlled components</h1>
+      <form>
+        <input
+          type="text"
+          name="fname"
+          value={values.fname}
+          onChange={handlerInput}
+          placeholder="Enter your Firstname"
+        />
+        <input
+          type="text"
+          name="lname"
+          value={values.lname}
+          onChange={handlerInput}
+          placeholder="Enter your Firstname"
+        />
+        <button>Submit</button>
+      </form>
+    </div>
+  );
+}
+
+export default Controlled;
+
+// useEffect hooks
+
+import React, { useEffect, useState }  from 'react'
+//import Post from './Component/Post';
+
+
+
+function App() {
+
+const [count, setCount] = useState(0);
+
+useEffect(()=>{
+  console.log("Vijay");
+},[count])
+
+  return (
+    <div>
+ {/* <Post /> */}
+    <h1>count: {count}</h1>
+    <button onClick={()=>setCount(count + 1)}>+</button> 
+    
+    </div>
+  )
+}
+
+export default App;
+
+useEffect hook with Api
+
+import React, { useState,useEffect } from 'react'
+
+function Post() {
+const [joke, setJoke] = useState('');
+useEffect(()=>{
+    handlePost();
+},[])
+    function handlePost(){
+        console.log("calling")
+        fetch("https://official-joke-api.appspot.com/random_joke")
+            .then((result)=>result.json())
+            .then((response)=>setJoke(response))
+    }
+    //console.log({post.userId})
+  return (
+    
+    <div>
+    <h1>Displaying Post in Json  Placeholder Data</h1>
+    <p>Joke Id:{joke.id}</p>
+      <p>Joke Setup:{joke.setup}</p>
+      <p>Joke Punchline:{joke.punchline}</p>
+      <button onClick={handlePost}>Gernerate post</button>
+    </div>
+  )
+}
+
+export default Post
+
+
+
 
