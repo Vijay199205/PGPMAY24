@@ -403,6 +403,46 @@ useEffect(()=>{
 
 export default Post
 
+//cleaning function
+
+import React, { useEffect, useState }  from 'react'
+//import React  from 'react'
+// import Github from './Component/Github';
+//import Lifecycle from './Component/Lifecycle';
+//import ParentComponent from './Component/ParentComponent';
+//import Post from './Component/Post';
+
+
+
+function App() {
+
+const [count, setCount] = useState(0);
+
+useEffect(()=>{
+  const fun = ()=>console.log("effect");
+  document.addEventListener("click", fun);
+  return()=>{
+    document.removeEventListener("click", fun)
+  }
+
+})
+
+  return (
+    <div>
+    {/* <Github/> */}
+    {/* <ParentComponent/> */}
+ {/* <Post /> */}
+    <h1>count: {count}</h1>
+    <button onClick={()=>setCount(count + 1)}>+</button> 
+    
+    </div>
+  )
+}
+
+export default App;
+
+
+
 
 
 
