@@ -441,6 +441,189 @@ useEffect(()=>{
 
 export default App;
 
+// React router- document
+
+import React ,{useState} from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Home from './Component/Routes/Home'
+import About from './Component/Routes/About'
+import Contact from './Component/Routes/Contact'
+import Users from './Component/Routes/Users'
+import Navbar from './Component/Routes/Navbar'
+
+function App() {
+  const [count, setCount] = useState(0)
+  return (
+    <div>
+     <button onClick={()=>setCount(count + 1)}>{count}</button>
+      <BrowserRouter>
+      <Navbar/>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/about" element={<About/>}/>
+          <Route path="/contact" element={<Contact/>}></Route>
+          <Route path="/user" element={<Users/>}/>
+        </Routes>
+      </BrowserRouter>
+    </div>
+  )
+}
+
+export default App
+
+// API call Section
+
+import React  from 'react';
+import "./App.css"
+
+import ApiCall from './Component/Api/ApiCall';
+
+
+function App() {
+//   const [fact, setFact] = useState ('');
+//   useEffect(()=>{
+//     //fectApi()
+//     fetchApiViaAxios()
+//   },[])
+
+//   function fectApi(){
+//      fetch("https://catfact.ninja/fact")
+// .then((res)=>{
+//       return res.json();
+//     }).then((data)=>{
+//       console.log(data.fact)
+//       setFact(data.fact)
+//     })
+//     .catch((err)=>{
+//       console.log(err)
+//     })
+//   }
+
+//   function fetchApiViaAxios(){
+//     axios.get("https://catfact.ninja/fact")
+//     .then((res)=>{
+//       //console.log(res.data.fact)
+//       setFact(res.data.fact)
+//     })
+//     .catch((err)=>{
+//       console.log(err)
+//     })
+//   }
+  
+  return (
+    <div>
+      <ApiCall/>
+    </div>
+    // <div className='app'>
+    //   <div className='card'>
+    //     <h1 className='heading'>{fact}</h1>
+    //     <button className='button'>
+    //       <span onClick={fetchApiViaAxios}>show More</span>
+    //     </button>
+    //   </div>
+    // </div>
+  )
+}
+
+export default App
+
+
+//
+import React ,{useState} from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Home from './Component/Routes/Home'
+import About from './Component/Routes/About'
+import Contact from './Component/Routes/Contact'
+import Users from './Component/Routes/Users'
+import Navbar from './Component/Routes/Navbar'
+
+function App() {
+  const [count, setCount] = useState(0)
+  return (
+    <div>
+     <button onClick={()=>setCount(count + 1)}>{count}</button>
+      <BrowserRouter>
+      <Navbar/>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/about" element={<About/>}/>
+          <Route path="/contact" element={<Contact/>}></Route>
+          <Route path="/user" element={<Users/>}/>
+        </Routes>
+      </BrowserRouter>
+    </div>
+  )
+}
+
+export default App
+
+
+//context API
+
+import React ,{ createContext, useState }  from 'react'
+import Comp1 from './Component/ContextApi/Comp1';
+import ParentCount from './Component/ContextApi/ParentCount';
+
+
+
+const firstName = createContext();
+const myContext = createContext();
+export default function App() {
+const [count, setCount] = useState(0)
+  return (
+    <div>
+    <firstName.Provider value="Vijaya M">
+    <Comp1/>
+    </firstName.Provider>
+      <h1>App</h1>
+      <myContext.Provider value={{count, setCount}}>
+      <ParentCount />
+      </myContext.Provider>
+
+      
+     
+      
+    </div>
+  )
+}
+export {firstName,myContext}
+
+
+import React, { useContext } from 'react';
+import { firstName } from '../../App';
+
+//Without state
+export default function Comp3() {
+const fname = useContext(firstName);
+console.log("data", fname)
+  return (
+    <div>
+      <h1>Comp3</h1>
+    </div>
+  )
+}
+
+//with state
+
+import React, { useContext } from 'react'
+import { myContext } from '../../App'
+export default function CountChil() {
+  //destructure the state
+    const {count, setCount} = useContext(myContext);
+    //console.log(data)
+  return (
+    <div>
+        <h1>count: {count}</h1>
+        <button onClick={()=>setCount(count+1)}>+</button>
+    </div>
+  )
+}
+
+
+
+
+
+
 
 
 
